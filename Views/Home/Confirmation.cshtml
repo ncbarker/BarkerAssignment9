@@ -1,0 +1,18 @@
+﻿@*
+
+*@
+@{
+    ViewData["Title"] = "Film Submitted";
+    ViewBag.Title = "Thank you for you film submission. I am excited to add " + Model.Title + " to the collection.";
+}
+
+@model BarkerAssignment9.Models.FormResponse
+
+<h1>@ViewData["Title"]</h1>
+<div>
+    <p>Thank you for your film submission.</p>
+</div>
+<div>
+    Click <a asp-action="CollectionList">here</a> to see the film collection.
+</div>
+

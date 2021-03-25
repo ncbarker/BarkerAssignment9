@@ -18,14 +18,35 @@ namespace BarkerAssignment9.Controllers
             _logger = logger;
         }
 
+        //Action for when Home/Index is called
         public IActionResult Index()
         {
             return View();
         }
 
+        //Action for when Podcasts is called
         public IActionResult Podcasts()
         {
             return View();
+        }
+
+        //Action for when FilmForm is called
+        public IActionResult FilmForm()
+        {
+            return View();
+        }
+
+        //Action for when the "submit" button is clicked on the FilmForm page
+        [HttpPost]
+        public IActionResult FilmForm(FormResponse appResponse)
+        {
+            TempStorage.AddResponse(appResponse);
+            return View("Confirmation", appResponse);
+        }
+
+        public IActionResult CollectionList()
+        {
+            return View(TempStorage.Responses);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -33,5 +54,7 @@ namespace BarkerAssignment9.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }

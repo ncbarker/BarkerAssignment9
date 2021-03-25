@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Collection";
+    ViewBag.Title = "Film Collection";
+}
+@model IEnumerable<BarkerAssignment9.Models.FormResponse>
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h2>Here are the films in the current collection.</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-center"></th>
+                <th class="text-center">Category</th>
+                <th class="text-center">Title</th>
+                <th class="text-center">Year</th>
+                <th class="text-center">Director</th>
+                <th class="text-center">Rating</th>
+                <th class="text-center">Edited</th>
+                <th class="text-center">Lent To</th>
+                <th class="text-center">Notes</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (BarkerAssignment9.Models.FormResponse x in Model)
+            {
+
+                <tr>
+                    <td>
+                        <form asp-page-handler="Remove" method="get">
+                            <input type="hidden" name="FilmId" value="@x.FilmId" />
+                            <button type="submit" class="btn btn-sm btn-dark">Edit</button>
+                        </form>
+                    </td>
+                    <td class="text-center">@x.Category</td>
+                    <td class="text-center">@x.Title</td>
+                    <td class="text-center">@x.Year</td>
+                    <td class="text-center">@x.Director</td>
+                    <td class="text-center">@x.Rating</td>
+                    <td class="text-center">@x.Edited</td>
+                    <td class="text-center">@x.LentTo</td>
+                    <td class="text-center">@x.Notes</td>
+                    <td class="text-center">
+                        <form asp-page-handler="Remove" method="post">
+                            <input type="hidden" name="FilmId" value="@x.FilmId" />
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a style="float:left" asp-action="Index">Return Home</a><a style="float:right" asp-action="FilmForm">Add another film</a>
+</div>
